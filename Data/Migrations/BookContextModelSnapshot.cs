@@ -74,7 +74,7 @@ namespace BookStoreServerNet.Data.Migrations
 
                     b.HasKey("Isbn13");
 
-                    b.ToTable("Books");
+                    b.ToTable("Books", (string)null);
                 });
 #pragma warning restore 612, 618
         }

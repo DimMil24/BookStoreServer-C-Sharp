@@ -46,9 +46,9 @@ public class BookService
         query = query.Where(b => b.Year <= filters.YearHigh && b.Year >= filters.YearLow);
         query = query.Where(b => b.AverageRating >= filters.RatingLow && b.AverageRating <= filters.RatingHigh);
         query = query.Where(b => b.Price >= filters.PriceLow && b.Price <= filters.PriceHigh);
-        if (!string.IsNullOrEmpty(filters.SearchTerm))
+        if (!string.IsNullOrEmpty(filters.Search))
         {
-            query = query.Where(b => b.Title.ToUpper().Contains(filters.SearchTerm.ToUpper()));
+            query = query.Where(b => b.Title.ToUpper().Contains(filters.Search.ToUpper()));
         }
 
         if (!string.IsNullOrEmpty(filters.Category))

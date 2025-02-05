@@ -10,7 +10,6 @@ namespace BookStoreServerNet.Controllers
 {
     [Route("api/")]
     [ApiController]
-    // [EnableCors("AllowAll")]
         public class BookController : ControllerBase
     {
         private readonly BookContext _context;
