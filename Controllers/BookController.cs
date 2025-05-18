@@ -4,7 +4,6 @@ using BookStoreServerNet.Data;
 using BookStoreServerNet.Models;
 using BookStoreServerNet.Models.Requests;
 using BookStoreServerNet.Services;
-using Microsoft.AspNetCore.Cors;
 
 namespace BookStoreServerNet.Controllers
 {
@@ -19,13 +18,6 @@ namespace BookStoreServerNet.Controllers
         {
             _context = context;
             _bookService = bookService;
-        }
-
-        [HttpGet("categories")]
-        public async Task<IActionResult> GetCategories()
-        {
-            var data = await _bookService.GetAllCategoriesAsync();
-            return Ok(data);
         }
 
         [HttpGet("author/{author}")]

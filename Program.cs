@@ -30,6 +30,7 @@ var connectionString =
 builder.Services.AddDbContext<BookContext>(options =>
     options.UseSqlite(connectionString));
 builder.Services.AddScoped<BookService>();
+builder.Services.AddScoped<CategoryService>();
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.

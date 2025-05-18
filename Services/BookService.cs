@@ -3,7 +3,6 @@ using BookStoreServerNet.Models;
 using BookStoreServerNet.Models.Requests;
 using BookStoreServerNet.Models.Responses;
 using Microsoft.EntityFrameworkCore;
-using Microsoft.IdentityModel.Tokens;
 
 namespace BookStoreServerNet.Services;
 
@@ -52,16 +51,6 @@ public class BookService
         };
         await _context.Books.AddAsync(book);
         await _context.SaveChangesAsync();
-    }
-
-    public async Task<List<string?>> GetAllCategoriesAsync()
-    {
-        return await _context.Books
-            .AsNoTracking()
-            .GroupBy(c => c.Categories)
-            .Where(grp => grp.Count() > 15)
-            .Select(c => c.Key)
-            .ToListAsync();
     }
 
     public async Task<List<Book>> GetBooksByAuthorAsync(string author)
