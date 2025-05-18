@@ -34,20 +34,31 @@ namespace BookStoreServerNet.Controllers
             return await _bookService.GetBooksByAuthorAsync(author);
         }
             
-        [HttpGet("books/id/{isbn13}")]
-        public async Task<Book?> GetBookById(long isbn13)
+        [HttpGet("books/{id}")]
+        public async Task<Book?> GetBookById(long id)
         {
-            return await _bookService.FindBookById(isbn13);
+            return await _bookService.FindBookById(id);
         }
 
-        [HttpGet("books/{page}")]
+        [HttpPost("books")]
+        public async Task<IActionResult> CreateNewBook(NewBookRequest newBookRequest)
+        {
+            if (await _bookService.BookExists(newBookRequest.Isbn13) || await _bookService.BookExistsByTitle(newBookRequest.Title))
+            {
+                return BadRequest();
+            }
+            await _bookService.AddBook(newBookRequest);
+            return Ok();
+        }
+
+        [HttpGet("books/page/{page}")]
         public async Task<IActionResult> GetBooks([FromQuery] FiltersRequest filters, int page = 1)
         {
             var books = await _bookService.GetBooksByPageAsync(page, filters);
             return Ok(books);
         }
         
-        [HttpPut("books/id/{id}")]
+        [HttpPut("books/{id}")]
         public async Task<IActionResult> PutBook(long id, Book book)
         {
             if (id != book.Isbn13)
@@ -76,7 +87,7 @@ namespace BookStoreServerNet.Controllers
         }
 
         // DELETE: api/Book/5
-        [HttpDelete("{id}")]
+        [HttpDelete("books/{id}")]
         public async Task<IActionResult> DeleteBook(long id)
         {
             var book = await _context.Books.FindAsync(id);

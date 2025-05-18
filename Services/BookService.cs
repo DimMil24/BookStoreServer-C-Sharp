@@ -21,6 +21,39 @@ public class BookService
         return await _context.Books.AsNoTracking().FirstOrDefaultAsync(book => book.Isbn13 == bookId);
     }
 
+    public async Task<bool> BookExists(long bookId)
+    {
+        return await _context.Books.AnyAsync(book => book.Isbn13 == bookId);
+    }
+    
+    public async Task<bool> BookExistsByTitle(string title)
+    {
+        return await _context.Books.AnyAsync(book => book.Title.ToLower() == title.ToLower());
+    }
+
+    public async Task AddBook(NewBookRequest newBook)
+    {
+        
+        var book = new Book
+        {
+            Isbn13 = newBook.Isbn13,
+            Isbn10 = newBook.Isbn10,
+            Title = newBook.Title,
+            Subtitle = newBook.Subtitle,
+            Authors = newBook.Authors,
+            Categories = newBook.Categories,
+            Price = newBook.Price,
+            Thumbnail = newBook.Thumbnail,
+            Description = newBook.Description,
+            Year = newBook.Year,
+            AverageRating = newBook.AverageRating,
+            NumberOfPages = newBook.NumberOfPages,
+            RatingsCount = newBook.RatingsCount,
+        };
+        await _context.Books.AddAsync(book);
+        await _context.SaveChangesAsync();
+    }
+
     public async Task<List<string?>> GetAllCategoriesAsync()
     {
         return await _context.Books
