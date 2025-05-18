@@ -3,6 +3,8 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace BookStoreServerNet.Controllers;
 
+[Route("api/")]
+[ApiController]
 public class CategoryController : ControllerBase
 {
     

@@ -20,7 +20,7 @@ namespace BookStoreServerNet.Controllers
             _bookService = bookService;
         }
 
-        [HttpGet("author/{author}")]
+        [HttpGet("books/author/{author}")]
         public async Task<List<Book>> GetBooksByAuthor([FromRoute] string author)
         {
             return await _bookService.GetBooksByAuthorAsync(author);
