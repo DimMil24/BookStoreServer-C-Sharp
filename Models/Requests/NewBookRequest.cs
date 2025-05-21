@@ -17,10 +17,10 @@ public class NewBookRequest
     public string? Thumbnail { get; set; }
     public string? Description { get; set; }
     [Required]
-    [Range(1, int.MaxValue, ErrorMessage = "Must be a number greater than 0")]
+    [Range(1970, 2023)]
     public int? Year { get; set; }
     [Required]
-    [Range(1, int.MaxValue, ErrorMessage = "Must be a number greater than 0")]
+    [Range(0, 5)]
     public double? AverageRating { get; set; }
     [Required]
     [Range(1, int.MaxValue, ErrorMessage = "Must be a number greater than 0")]
@@ -29,6 +29,6 @@ public class NewBookRequest
     [Range(1, int.MaxValue, ErrorMessage = "Must be a number greater than 0")]
     public int? RatingsCount { get; set; }
     [Required]
-    [Range(1, int.MaxValue, ErrorMessage = "Must be a number greater than 0")]
+    [Range(1, 150)]
     public int? Price { get; set; }
 }
