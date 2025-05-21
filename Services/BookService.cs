@@ -8,9 +8,9 @@ namespace BookStoreServerNet.Services;
 
 public class BookService
 {
-    private readonly BookContext _context;
+    private readonly ApplicationDbContext _context;
     
-    public BookService(BookContext context)
+    public BookService(ApplicationDbContext context)
     {
         _context = context;
     }

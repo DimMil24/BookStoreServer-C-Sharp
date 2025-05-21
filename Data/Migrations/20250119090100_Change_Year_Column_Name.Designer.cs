@@ -10,7 +10,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace BookStoreServerNet.Data.Migrations
 {
-    [DbContext(typeof(BookContext))]
+    [DbContext(typeof(ApplicationDbContext))]
     [Migration("20250119090100_Change_Year_Column_Name")]
     partial class Change_Year_Column_Name
     {
