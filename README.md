@@ -11,6 +11,8 @@ For the frontend click [here](https://github.com/DimMil24/BookStoreClient)
 
 ##  Features
 - Responsive Design
+- JWT Authentication
+- Field Validation
 - Search with filters
 - Group By Category
 - Admin Book Management
