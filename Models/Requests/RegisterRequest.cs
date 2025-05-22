@@ -8,7 +8,7 @@ namespace BookStoreServerNet.Models.Requests
 		[Required]
 		public string Email { get; set; }
 		[Required]
-		[Range(3,14)]
+		[Length(3,15)]
 		public string Username { get; set; }
 		[Required]
 		public string Password { get; set; }
